@@ -16,7 +16,7 @@ module Continuance
 
     it 'should be able to measure Duration to a millisecond' do
       duration = Duration.create('00:00.001', '%H:%M.%L')
-      expect(duration.nano_seconds).to eq(1000000)
+      expect(duration.nano_seconds).to eq(100_000_0)
     end
 
     it 'should be able to measure Duration to a second' do

@@ -8,6 +8,6 @@ class BaseDate
   attr_reader :val
 
   def initialize
-    @val = Time.new(1970,1,1)
+    @val = Time.new(1970, 1, 1)
   end
 end
