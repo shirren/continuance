@@ -19,6 +19,11 @@ module Continuance
       expect(duration.nano_seconds).to eq(100_000_0)
     end
 
+    it 'should be able to measure Duration to a nanosecond' do
+      duration = Duration.create('00:00.000000001', '%H:%M.%L')
+      expect(duration.nano_seconds).to eq(1)
+    end
+
     it 'should be able to measure Duration to a second' do
       duration = Duration.create('00:00.1', '%H:%M.%S')
       expect(duration.seconds).to eq(1)
@@ -72,6 +77,33 @@ module Continuance
       duration1 = Duration.create('00:00:00.005', '%H:%M:%S.%N')
       duration2 = Duration.create('00:01:00', '%H:%M:%S')
       expect(duration2 + duration1).to eq(60.005)
+    end
+
+    context 'with a lesser value' do
+      let(:duration1) { Duration.new(0, 0, 0, 100) }
+      let(:duration2) { Duration.new(0, 0, 0, 101) }
+
+      it 'should report as so when compared' do
+        expect(duration1).to be < duration2
+      end
+    end
+
+    context 'with an equal value' do
+      let(:duration1) { Duration.new(0, 0, 0, 100) }
+      let(:duration2) { Duration.new(0, 0, 0, 100) }
+
+      it 'should report as so when compared' do
+        expect(duration1).to eql(duration2)
+      end
+    end
+
+    context 'with a greater value' do
+      let(:duration1) { Duration.new(0, 0, 0, 101) }
+      let(:duration2) { Duration.new(0, 0, 0, 100) }
+
+      it 'should report as so when compared' do
+        expect(duration1).to be > duration2
+      end
     end
   end
 end

@@ -1,11 +1,14 @@
 require 'time'
 require 'continuance/base_date'
 
-# Duration is a measure of how long something takes to do
-# where our resolution is limited to hours, minutes, seconds
-# and nano seconds which should be enough to measure anything
+# Continuance module
 module Continuance
+  # Duration is a measure of how long something takes to do
+  # where our resolution is limited to hours, minutes, seconds
+  # and nano seconds which should be enough to measure anything
   class Duration
+    include Comparable
+
     attr_reader :hours, :minutes
     attr_reader :seconds, :nano_seconds
 
@@ -44,6 +47,22 @@ module Continuance
     # is returned as a float value
     def to_f
       (@hours * 3600) + (@minutes * 60) + @seconds + (@nano_seconds.to_f / 10**9)
+    end
+
+    # Total equivalence implementation including the objects type
+    def eql?(other)
+      other.class == self.class && self == other
+    end
+
+    # Comparable implementation for a duration object
+    def <=>(other)
+      if to_f < other.to_f
+        -1
+      elsif to_f > other.to_f
+        1
+      else
+        0
+      end
     end
 
     # A duration can be created by specifying the time as a string and providing a valid
