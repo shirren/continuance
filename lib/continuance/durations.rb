@@ -5,6 +5,8 @@ module Continuance
   class Durations
     attr_reader :items
 
+    # Constructor can take a sequence of duration objects, objects outside
+    # of durations are ignored
     def initialize(items = [])
       @items = items
     end
@@ -12,7 +14,7 @@ module Continuance
     # Given a series of durations, this function calculates the average duration
     # by converting each duration to an absolute float value
     def average
-      time = Time.at(avg_as_f).utc.strftime("%H:%M:%S:%N")
+      time = Time.at(avg_as_f).utc.strftime('%H:%M:%S:%N')
       Duration.create(time, '%H:%M:%S:%L')
     end
 
