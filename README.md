@@ -65,4 +65,4 @@ total = durations.total
 
 The average method returns a Duration object, where as total returns the total number of seconds as a floating point value, this could change in the future. The order of complexity of both operations is `O(n)`.
 
-[Report bugs][issues] on GitHub.
+Report bugs on GitHub.
