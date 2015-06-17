@@ -6,7 +6,7 @@ require 'continuance/version'
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = 'continuance'
-  s.version     = Mjolnir::VERSION
+  s.version     = Continuance::VERSION
   s.authors     = ['Shirren Premaratne']
   s.email       = ['shirren.premaratne@gmail.com']
   s.homepage    = 'https://github.com/shirren/continuance'
