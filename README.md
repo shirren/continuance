@@ -5,6 +5,9 @@ Continuance is a library for handling duration as opposed to absolute time.
 At present the minimum resolution for measuring duration in Continuance is in hours, with
 the maximum resolution being a nanosecond.
 
+Current Build Status:
+[ ![Codeship Status for shirren/continuance](https://codeship.com/projects/c20de200-f6d0-0132-1815-2e788669a94e/status?branch=master)](https://codeship.com/projects/86171)
+
 ## Installation
 
 The continuance gem runs with all Ruby versions >= 1.9.3.
