@@ -46,37 +46,37 @@ module Continuance
     it 'should be subtractable from a lesser duration' do
       duration1 = Duration.create('00:00:02', '%H:%M:%S')
       duration2 = Duration.create('00:00:03', '%H:%M:%S')
-      expect(duration2 - duration1).to eq(1.0)
+      expect(duration2 - duration1).to eq(Duration.new(0, 0, 1, 0))
     end
 
     it 'should be subtractable from a duration with a different resolution' do
       duration1 = Duration.create('00:00:00.005', '%H:%M:%S.%N')
       duration2 = Duration.create('00:00:01', '%H:%M:%S')
-      expect(duration2 - duration1).to eq(0.995)
+      expect(duration2 - duration1).to eq(Duration.new(0, 0, 0, 995_000_000))
     end
 
     it 'should be subtractable from a duration with a vastly different resolution' do
       duration1 = Duration.create('00:00:00.005', '%H:%M:%S.%N')
       duration2 = Duration.create('00:01:00', '%H:%M:%S')
-      expect(duration2 - duration1).to eq(59.995)
+      expect(duration2 - duration1).to eq(Duration.new(0, 0, 59, 995_000_000))
     end
 
     it 'should be addable to a lesser duration' do
       duration1 = Duration.create('00:00:02', '%H:%M:%S')
       duration2 = Duration.create('00:00:03', '%H:%M:%S')
-      expect(duration2 + duration1).to eq(5.0)
+      expect(duration2 + duration1).to eq(Duration.new(0, 0, 5, 0))
     end
 
     it 'should be addable to a duration with a different resolution' do
       duration1 = Duration.create('00:00:00.005', '%H:%M:%S.%N')
       duration2 = Duration.create('00:00:01', '%H:%M:%S')
-      expect(duration2 + duration1).to eq(1.005)
+      expect(duration2 + duration1).to eq(Duration.new(0, 0, 1, 5_000_000))
     end
 
     it 'should be addable to a duration with a vastly different resolution' do
       duration1 = Duration.create('00:00:00.005', '%H:%M:%S.%N')
       duration2 = Duration.create('00:01:00', '%H:%M:%S')
-      expect(duration2 + duration1).to eq(60.005)
+      expect(duration2 + duration1).to eq(Duration.new(0, 1, 0, 5_000_000))
     end
 
     context 'with a lesser value' do

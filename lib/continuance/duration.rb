@@ -26,13 +26,13 @@ module Continuance
     def -(other)
       other_time = Time.strptime(other.to_s, '%H:%M:%S.%N', BaseDate.new.val)
       self_time = Time.strptime(to_s, '%H:%M:%S.%N', BaseDate.new.val)
-      self_time - other_time
+      convert_to(self_time - other_time)
     end
 
     # Should be able to calculate the sum of two durations objects
     # as seconds, this is returned as a float value
     def +(other)
-      to_f + other.to_f
+      convert_to(to_f + other.to_f)
     end
 
     # A duration can be serialized to a string, this is used not only for visual
@@ -46,6 +46,8 @@ module Continuance
     # Converts a duration object to it's equivalent number of seconds, this value
     # is returned as a float value
     def to_f
+      # TODO: This calculation can result in floating point errors when the duration
+      # is converted to and from a float value
       (@hours * 3600) + (@minutes * 60) + @seconds + (@nano_seconds.to_f / 10**9)
     end
 
@@ -71,6 +73,13 @@ module Continuance
     def self.create(duration, format)
       time_val = Time.strptime(duration, format, BaseDate.new.val)
       Duration.new(time_val.hour, time_val.min, time_val.sec, time_val.nsec)
+    end
+
+    private
+
+    # Converts a time in seconds to a duration object
+    def convert_to(time_as_float)
+      Duration.create(time_as_float.to_s, '%S.%N')
     end
   end
 end

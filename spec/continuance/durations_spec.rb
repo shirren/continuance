@@ -30,7 +30,7 @@ module Continuance
       end
     end
 
-    context 'with a multiple durations' do
+    context 'with multiple durations' do
       let(:duration1)  { Duration.new(1, 0, 0, 0) }
       let(:duration2)  { Duration.new(0, 1, 0, 0) }
       let(:duration3)  { Duration.new(0, 0, 1, 0) }
