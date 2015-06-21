@@ -25,6 +25,16 @@ module Continuance
       end
     end
 
+    # Tells us what the smallest duration is of the given ones
+    def min
+      items.map(&:to_f).min
+    end
+
+    # Tells us what the largest duration is of the given ones
+    def max
+      items.map(&:to_f).max
+    end
+
     private
 
     # Calculates the average of the time as a float

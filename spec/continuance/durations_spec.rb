@@ -15,6 +15,14 @@ module Continuance
       it 'should be able to calculate an average' do
         expect(durations.average).to eq(Duration.new)
       end
+
+      it 'should be able to extract the minimum' do
+        expect(durations.min).to be_nil
+      end
+
+      it 'should be able to extract the maximum' do
+        expect(durations.max).to be_nil
+      end
     end
 
     context 'with a single duration' do
@@ -28,6 +36,14 @@ module Continuance
       it 'should be able to calculate an average' do
         expect(durations.average).to eq(Duration.new(1, 1, 1, 0))
       end
+
+      it 'should be able to extract the minimum' do
+        expect(durations.min).to eq(Duration.new(1, 1, 1, 0))
+      end
+
+      it 'should be able to extract the maximum' do
+        expect(durations.max).to eq(Duration.new(1, 1, 1, 0))
+      end
     end
 
     context 'with multiple durations' do
@@ -35,7 +51,7 @@ module Continuance
       let(:duration2)  { Duration.new(0, 1, 0, 0) }
       let(:duration3)  { Duration.new(0, 0, 1, 0) }
       let(:duration4)  { Duration.new(0, 0, 0, 1_000_000) }
-      let(:durations) { Durations.new([duration1, duration2, duration3, duration4]) }
+      let(:durations)  { Durations.new([duration1, duration2, duration3, duration4]) }
 
       it 'should be able to calculate the total' do
         expect(durations.total).to eq(3661.001)
@@ -43,6 +59,14 @@ module Continuance
 
       it 'should be able to calculate an average' do
         expect(durations.average).to eq(Duration.new(0, 15, 15, 250_250_000))
+      end
+
+      it 'should be able to extract the minimum' do
+        expect(durations.min).to eq(Duration.new(0, 0, 0, 1_000_000))
+      end
+
+      it 'should be able to extract the maximum' do
+        expect(durations.max).to eq(Duration.new(1, 0, 0, 0))
       end
     end
   end
