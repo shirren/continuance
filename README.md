@@ -56,6 +56,8 @@ Continuance::Duration.new(1, 0, 5, 0) + Continuance::Duration.new(0, 0, 6, 32)
 
 ## Collection Operations
 
+### Total & average
+
 At present Continuance provides `total` and `average` aggregate operations on a collection of duration objects. The Ruby code below demonstrates how to use these collection operations.
 
  ```ruby
@@ -67,5 +69,9 @@ total = durations.total
 ```
 
 The average method returns a Duration object, where as total returns the total number of seconds as a floating point value, this could change in the future. The order of complexity of both operations is `O(n)`.
+
+### Min & Max
+
+The library also supports retrieving minimum and maximum functions for a collection of durations. Like the total and average operations, the order of complexity of the min and max operation is `O(n)`.
 
 Report bugs on GitHub.
