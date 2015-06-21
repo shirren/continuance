@@ -35,6 +35,8 @@ module Continuance
       items.map(&:to_f).max
     end
 
+    # TODO: Add a variance and standard deviation methods to this class
+
     private
 
     # Calculates the average of the time as a float
