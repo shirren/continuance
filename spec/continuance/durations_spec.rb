@@ -23,6 +23,14 @@ module Continuance
       it 'should be able to extract the maximum' do
         expect(durations.max).to be_nil
       end
+
+      it 'should be able to calculate the variance' do
+        expect(durations.variance).to eq(0.0)
+      end
+
+      it 'should be able to calculate the standard deviation' do
+        expect(durations.standard_deviation).to eq(0.0)
+      end
     end
 
     context 'with a single duration' do
@@ -67,6 +75,32 @@ module Continuance
 
       it 'should be able to extract the maximum' do
         expect(durations.max).to eq(Duration.new(1, 0, 0, 0))
+      end
+
+      it 'should alias arithmetic mean to average' do
+        expect(durations.arithmetic_mean).to eq(durations.average)
+      end
+
+      it 'should alias median to average' do
+        expect(durations.median).to eq(durations.average)
+      end
+    end
+
+    context 'like the six side of a dice' do
+      let(:side1)  { Duration.new(0, 0, 1, 0) }
+      let(:side2)  { Duration.new(0, 0, 2, 0) }
+      let(:side3)  { Duration.new(0, 0, 3, 0) }
+      let(:side4)  { Duration.new(0, 0, 4, 0) }
+      let(:side5)  { Duration.new(0, 0, 5, 0) }
+      let(:side6)  { Duration.new(0, 0, 6, 0) }
+      let(:sides)  { Durations.new([side1, side2, side3, side4, side5, side6]) }
+
+      it 'should be able to calculate the variance' do
+        expect(sides.variance).to eq(2.9166666666666665)
+      end
+
+      it 'should be able to calculate the standard deviation' do
+        expect(sides.standard_deviation).to eq(1.707825127659933)
       end
     end
   end

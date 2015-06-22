@@ -18,6 +18,11 @@ module Continuance
       Duration.create(time, '%H:%M:%S:%L')
     end
 
+    # In mathematics average is also known by the terms median and
+    # arithmetic mean
+    alias_method :arithmetic_mean, :average
+    alias_method :median, :average
+
     # Provides a sum of all the durations
     def total
       items.inject(0.0) do |sum, duration|
@@ -36,6 +41,21 @@ module Continuance
     end
 
     # TODO: Add a variance and standard deviation methods to this class
+    def variance
+      if items.empty?
+        0
+      else
+        mean = average # Cache the average for future use
+        diffs = items.map { |duration| duration.to_f - mean.to_f }
+        diff_squares = diffs.map { |diff| diff**2 }
+        diff_squares.inject(:+) / items.size
+      end
+    end
+
+    # The standard deviation is simply the square root of the variance
+    def standard_deviation
+      Math.sqrt(variance)
+    end
 
     private
 
