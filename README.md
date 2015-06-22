@@ -68,10 +68,14 @@ average = durations.average
 total = durations.total
 ```
 
-The average method returns a Duration object, where as total returns the total number of seconds as a floating point value, this could change in the future. The order of complexity of both operations is `O(n)`.
+The average method returns a Duration object, where as total returns the total number of seconds as a floating point value, this could change in the future. The order of complexity of both operations is `O(n)`. In mathematics average is also referred to as the arithmetic mean and median. The average is aliased as arithmetic mean and median.
 
 ### Min & Max
 
-The library also supports retrieving minimum and maximum functions for a collection of durations. Like the total and average operations, the order of complexity of the min and max operation is `O(n)`.
+The library also supports retrieving the minimum and maximum value for a collection of durations. Like the total and average operations, the order of complexity of the min and max operation is `O(n)`.
+
+### Variance & Standard Deviation
+
+The library also supports retrieving the variance and standard deviation for a collection of durations.
 
 Report bugs on GitHub.
