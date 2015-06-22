@@ -13,7 +13,8 @@ Gem::Specification.new do |s|
   s.summary     = 'Continuance is a library for handling durations as opposed to time.'
   s.description = 'Continuance is a library for handling durations as opposed to time. ' \
                   'A duration represents a finite period of time meaurable in hours, minutes, ' \
-                  'seconds and nanoseconds.'
+                  'seconds and nanoseconds. Durations also support some standard mathematical operations' \
+                  'such as artihmetic mean, variance and standard deviation amongst others.'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']
