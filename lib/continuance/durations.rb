@@ -37,10 +37,11 @@ module Continuance
 
     # Tells us what the largest duration is of the given ones
     def max
-      items.map(&:to_f).max
+      items.map(&:to_f).max;
     end
 
-    # TODO: Add a variance and standard deviation methods to this class
+    # Variance is an average of the sum of differences between an actual value
+    # and the mean value
     def variance
       if items.empty?
         0
